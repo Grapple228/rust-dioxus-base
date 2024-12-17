@@ -21,9 +21,43 @@ Follow [this](https://dioxuslabs.com/learn/0.6/getting_started/) article to inst
 
 [Learn more about `dioxus` here.](https://github.com/dioxuslabs/dioxus)
 
+#### 1: Web
+
 ```sh
 cd crates/apps/web
 dx serve
+```
+
+#### 2: Desktop
+
+```sh
+cd crates/apps/desktop
+dx serve
+```
+
+#### 3: Mobile (virtual)
+
+```sh
+emulator -avd Pixel_6a_API_35 -gpu host -netdelay none -netspeed full
+cd crates/apps/mobile
+dx serve --platform android
+```
+
+#### 4: Mobile (native)
+
+```sh
+# Turn on USB-debugging
+
+# -- Connect usb to wsl (Optional)
+usbipd bind --busid 2-2
+usbipd attach --wsl --busid 2-2
+
+# -- Build apk
+cd crates/apps/mobile
+dx build --platform android
+
+# -- Install apk on device
+adb install target/dx/mobile/debug/android/app/app/build/outputs/apk/debug/app-debug.apk
 ```
 
 ## License
